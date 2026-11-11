@@ -1,0 +1,7 @@
+<article class="article-card reveal" data-categories="<%= JSON.stringify(post_categories(post)) %>">
+  <a class="article-card-link" href="<%- url_for(post.path) %>">
+    <h2><%= post.title %></h2>
+    <time datetime="<%= post.date.toISOString() %>"><%= post.date.format('YYYY.MM.DD') %></time>
+    <p class="article-preview"><%- strip_html(post.content).replace(/\s+/g,' ').trim().slice(0,600) %></p>
+  </a>
+</article>

@@ -1,2 +1,19 @@
 <section class="page-heading wrap"><h1>所有文章</h1><p>编程、学习和日常，按时间收在一起。</p></section>
-<section class="archive-section wrap" aria-label="文章归档"><div class="archive-grid"><div class="filter-panel"><div class="filter-controls" role="group" aria-label="按分类筛选文章"><% ['全部',...workbench_categories()].forEach((category,i)=>{ %><button type="button" data-filter="<%= category %>" aria-pressed="<%= i===0 %>"><%= category %></button><% }); %></div><a href="<%- url_for('/search/') %>" class="text-link">搜索文章</a></div><div><div class="post-list"><% workbench_posts().forEach(post=>{ %><%- partial('_partial/post-row',{post}) %><% }); %></div><p id="filter-empty" class="empty-state" role="status" hidden>这个分类暂时没有文章。</p></div></div></section>
+<section class="archive-section wrap" aria-label="文章归档">
+  <div class="archive-grid">
+    <aside class="filter-panel" aria-label="文章分类">
+      <div class="filter-controls" role="group" aria-label="按分类筛选文章">
+        <% ['全部',...workbench_categories()].forEach((category,i)=>{ %>
+          <button type="button" data-filter="<%= category %>" aria-pressed="<%= i===0 %>"><%= category %></button>
+        <% }); %>
+      </div>
+      <a href="<%- url_for('/search/') %>" class="text-link">搜索文章</a>
+    </aside>
+    <div>
+      <div class="article-list">
+        <% workbench_posts().forEach(post=>{ %><%- partial('_partial/article-card',{post}) %><% }); %>
+      </div>
+      <p id="filter-empty" class="empty-state" role="status" hidden>这个分类暂时没有文章。</p>
+    </div>
+  </div>
+</section>
