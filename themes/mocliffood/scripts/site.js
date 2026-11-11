@@ -2,6 +2,9 @@
 
 const visiblePosts = () => hexo.locals.get('posts').sort('date', -1).filter(p => !p.legacy).toArray();
 hexo.extend.helper.register('workbench_posts', visiblePosts);
+const postCategories = p => p.categories.toArray().map(category => category.name);
+hexo.extend.helper.register('post_categories', postCategories);
+hexo.extend.helper.register('workbench_categories', () => [...new Set(visiblePosts().flatMap(postCategories))]);
 hexo.extend.helper.register('post_kind', p => p.kind || '学习笔记');
 hexo.extend.helper.register('post_summary', p => p.description || String(p.excerpt || p.content).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 100));
 hexo.extend.helper.register('read_minutes', p => Math.max(1, Math.ceil(String(p.content).replace(/<[^>]+>/g, '').length / 350)));

@@ -20,6 +20,8 @@ npm run server
 
 `source/_posts/` 保存已发布的 Markdown。文章开头的 `kind` 可以使用“编程与建站”“学习笔记”“日常分享”。日常文章会自动出现在日常页。未完成的内容放 `source/_drafts/` 或设置 `published: false`。
 
+首页“最近”与归档页的左侧索引读取文章的 `categories`，不使用预设分类。当前没有分类，只显示“全部”；以后在文章 front-matter 添加 `categories` 后会自动生成筛选项。`kind` 继续用于文章类型说明与日常页归集。
+
 ```bash
 npx hexo new "文章标题"
 ```

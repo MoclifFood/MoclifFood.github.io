@@ -3,9 +3,9 @@
   <div class="hero-bottom"><p class="hero-line reveal">:)</p><a class="button reveal" href="#writing">阅读文章 <span aria-hidden="true">↗</span></a></div>
 </section>
 <section class="writing-section chapter" id="writing" aria-labelledby="writing-title">
-  <div class="wrap section-opening"><h2 id="writing-title" class="reveal">最近写下</h2><p class="reveal">把过程留下，让想法有处可寻。</p></div>
+  <div class="wrap section-opening"><h2 id="writing-title" class="reveal">最近</h2></div>
   <div class="wrap writing-grid">
-    <div class="filter-panel"><p>从一个兴趣开始</p><div class="filter-controls" role="group" aria-label="按主题筛选文章"><% ['全部','编程与建站','学习笔记','日常分享'].forEach((kind,i)=>{ %><button type="button" data-filter="<%= kind %>" aria-pressed="<%= i===0 %>"><%= kind %></button><% }); %></div><a class="text-link" href="<%- url_for('/archives/') %>">全部文章</a></div>
+    <div class="filter-panel"><div class="filter-controls" role="group" aria-label="按分类筛选文章"><% ['全部',...workbench_categories()].forEach((category,i)=>{ %><button type="button" data-filter="<%= category %>" aria-pressed="<%= i===0 %>"><%= category %></button><% }); %></div></div>
     <div><div class="post-list" id="post-list"><% workbench_posts().slice(0,6).forEach(post=>{ %><%- partial('_partial/post-row',{post}) %><% }); %></div><p class="empty-state" id="filter-empty" role="status" hidden>这个主题还没有文章。先看看其他记录吧。</p></div>
   </div>
 </section>
