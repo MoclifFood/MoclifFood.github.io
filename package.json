@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "hexo clean && hexo generate",
+    "check": "node tools/check-site.mjs",
+    "publish": "npm run build && npm run check && node tools/publish.mjs",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server"

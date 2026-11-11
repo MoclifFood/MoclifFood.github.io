@@ -1,0 +1,29 @@
+name: Build and validate personal website
+on:
+  push:
+    branches: [source]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: github-pages-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: website-static
+          path: public
+          include-hidden-files: true

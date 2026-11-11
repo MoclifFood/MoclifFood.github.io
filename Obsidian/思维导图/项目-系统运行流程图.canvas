@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S1 当前实现\nMarkdown、图片与站点配置"
+    },
+    {
+      "id": "S2",
+      "type": "text",
+      "x": 370,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S2 当前实现\nHexo + mocliffood 主题构建"
+    },
+    {
+      "id": "S3",
+      "type": "text",
+      "x": 740,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S3 当前实现\nHTML、CSS、搜索 JSON、RSS、站点地图"
+    },
+    {
+      "id": "S4",
+      "type": "text",
+      "x": 1110,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S4 当前实现／校验分支\n构建与内部链接检查是否通过？"
+    },
+    {
+      "id": "S5",
+      "type": "text",
+      "x": 740,
+      "y": 230,
+      "width": 290,
+      "height": 150,
+      "text": "S5 当前实现\n检查失败：修复源码后重新构建"
+    },
+    {
+      "id": "S6",
+      "type": "text",
+      "x": 1480,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S6 待验证\nSSH 推送 main，保留发布历史"
+    },
+    {
+      "id": "S7",
+      "type": "text",
+      "x": 1850,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S7 待验证\nGitHub Pages 分发"
+    },
+    {
+      "id": "S8",
+      "type": "text",
+      "x": 2220,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "S8 本地已验证\n阅读、搜索、主题筛选、深浅色切换"
+    },
+    {
+      "id": "runtime-doc",
+      "type": "file",
+      "x": 0,
+      "y": 260,
+      "width": 660,
+      "height": 240,
+      "file": "资料/Library/项目-系统运行流程图.md"
+    }
+  ],
+  "edges": [
+    {
+      "id": "S1-S2",
+      "fromNode": "S1",
+      "toNode": "S2",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "内容与配置"
+    },
+    {
+      "id": "S2-S3",
+      "fromNode": "S2",
+      "toNode": "S3",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "静态产物"
+    },
+    {
+      "id": "S3-S4",
+      "fromNode": "S3",
+      "toNode": "S4",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "依赖"
+    },
+    {
+      "id": "S4-S5",
+      "fromNode": "S4",
+      "toNode": "S5",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "否"
+    },
+    {
+      "id": "S5-S2",
+      "fromNode": "S5",
+      "toNode": "S2",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "重建"
+    },
+    {
+      "id": "S4-S6",
+      "fromNode": "S4",
+      "toNode": "S6",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "是"
+    },
+    {
+      "id": "S6-S7",
+      "fromNode": "S6",
+      "toNode": "S7",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "发布"
+    },
+    {
+      "id": "S7-S8",
+      "fromNode": "S7",
+      "toNode": "S8",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "访问"
+    }
+  ]
+}

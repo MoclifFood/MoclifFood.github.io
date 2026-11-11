@@ -1,0 +1,114 @@
+{
+  "nodes": [
+    {
+      "id": "P1",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "P1 必做／已验收\n旧站保存、方向确认\n技术工作台 + 日常分享"
+    },
+    {
+      "id": "P2",
+      "type": "text",
+      "x": 370,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "P2 必做／已验收\n自定义主题、文章、搜索\n米黄背景 + 柔黑文字"
+    },
+    {
+      "id": "P3",
+      "type": "text",
+      "x": 740,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "P3 必做／进行中\n构建、内部链接、三种宽度与交互检查"
+    },
+    {
+      "id": "P4",
+      "type": "text",
+      "x": 1110,
+      "y": 0,
+      "width": 290,
+      "height": 150,
+      "text": "P4 必做／待实现\nsource 保存源码，main 发布\n核对线上内容"
+    },
+    {
+      "id": "B1",
+      "type": "text",
+      "x": 1480,
+      "y": -150,
+      "width": 290,
+      "height": 150,
+      "text": "B1 可选／延期\n迁移至其他托管或服务器"
+    },
+    {
+      "id": "B2",
+      "type": "text",
+      "x": 1480,
+      "y": 150,
+      "width": 290,
+      "height": 150,
+      "text": "B2 可选／延期\n按需要接入评论"
+    },
+    {
+      "id": "plan-doc",
+      "type": "file",
+      "x": 370,
+      "y": 260,
+      "width": 660,
+      "height": 240,
+      "file": "资料/Library/项目-开发计划图.md"
+    }
+  ],
+  "edges": [
+    {
+      "id": "P1-P2",
+      "fromNode": "P1",
+      "toNode": "P2",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "依赖"
+    },
+    {
+      "id": "P2-P3",
+      "fromNode": "P2",
+      "toNode": "P3",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "依赖"
+    },
+    {
+      "id": "P3-P4",
+      "fromNode": "P3",
+      "toNode": "P4",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "依赖"
+    },
+    {
+      "id": "P4-B1",
+      "fromNode": "P4",
+      "toNode": "B1",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "可选"
+    },
+    {
+      "id": "P4-B2",
+      "fromNode": "P4",
+      "toNode": "B2",
+      "fromSide": "right",
+      "toSide": "left",
+      "toEnd": "arrow",
+      "label": "可选"
+    }
+  ]
+}

@@ -6,3 +6,8 @@ node_modules/
 public/
 .deploy*/
 _multiconfig.yml
+.publish/
+.taste-skill/
+.env
+.env.*
+!.env.example

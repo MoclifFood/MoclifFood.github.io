@@ -4,8 +4,8 @@
 
 # Site
 title: MoclifFood's Blog
-subtitle: 'Riding Waves Here Im Skyrocketed'
-description: 'Study'
+subtitle: '写代码，也记录日常。'
+description: 'MoclifFood 的个人工作台。编程、嵌入式、学习笔记，以及屏幕之外的日常分享。'
 keywords: CS2, Games, Programming, Embedded
 author: MoclifFood
 language: zh-CN
@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://mocliffood.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -42,7 +42,7 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: false
 relative_link: false
-future: true
+future: false
 syntax_highlighter: highlight.js
 highlight:
   line_number: true
@@ -96,7 +96,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: butterfly
+theme: mocliffood
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

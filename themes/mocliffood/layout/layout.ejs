@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title><%= page.title ? page.title + ' · MoclifFood' : 'MoclifFood · 写代码，也记录日常' %></title>
+  <meta name="description" content="<%= page.description || config.description %>">
+  <meta property="og:title" content="<%= page.title || config.title %>">
+  <meta property="og:description" content="<%= page.description || config.description %>">
+  <meta property="og:type" content="<%= is_post() ? 'article' : 'website' %>">
+  <meta property="og:image" content="<%= full_url_for('/images/waves-of-luputhana-11.jpg') %>">
+  <link rel="canonical" href="<%= full_url_for(page.path || '/') %>">
+  <link rel="icon" href="<%- url_for('/favicon.svg') %>" type="image/svg+xml">
+  <link rel="alternate" type="application/atom+xml" title="MoclifFood" href="<%- url_for('/atom.xml') %>">
+  <link rel="preload" href="<%- url_for('/fonts/hanken-grotesk.woff2') %>" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="<%- url_for('/css/site.css') %>">
+  <script src="<%- url_for('/js/site.js') %>" defer></script>
+</head>
+<body class="<%= is_home() ? 'home' : 'inner' %>">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="<%- url_for('/') %>" aria-label="MoclifFood 首页">MoclifFood<span class="wordmark-dot" aria-hidden="true">.</span></a>
+    <nav aria-label="主导航">
+      <% [['文章','/archives/'],['项目','/projects/'],['日常','/daily/'],['关于','/about/']].forEach(([label,href]) => { %>
+        <a href="<%- url_for(href) %>" <%- page.path?.startsWith(href.slice(1)) ? 'aria-current="page"' : '' %>><%= label %></a>
+      <% }); %>
+      <a class="search-link" href="<%- url_for('/search/') %>" aria-label="搜索文章"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.8"/></svg><span>搜索</span></a>
+    </nav>
+  </header>
+  <main id="main"><%- body %></main>
+  <footer class="site-footer">
+    <div class="wrap footer-top">
+      <div><p>在这里继续生长。</p><a href="<%- url_for('/about/') %>">关于这个工作台</a></div>
+      <div class="footer-links"><a href="<%= theme.github %>" target="_blank" rel="noopener noreferrer">GitHub</a><a href="<%- url_for('/atom.xml') %>">RSS 订阅</a><a href="<%- url_for('/credits/') %>">图片与字体</a><button type="button" id="theme-toggle" aria-pressed="false">切换浅色</button></div>
+    </div>
+    <div class="wrap footer-name" aria-hidden="true">MoclifFood</div>
+    <div class="wrap footer-bottom"><span>© <%= new Date().getFullYear() %> MoclifFood</span><a href="<%= theme.repository %>" target="_blank" rel="noopener noreferrer">这个网站的源码</a><a href="#main">回到顶部</a></div>
+  </footer>
+</body>
+</html>
