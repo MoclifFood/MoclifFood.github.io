@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mocliffood.github.io/sitemap.xml
