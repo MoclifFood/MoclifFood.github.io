@@ -52,7 +52,7 @@
       "y": 0,
       "width": 290,
       "height": 150,
-      "text": "S6 待验证\nSSH 推送 main，保留发布历史"
+      "text": "S6 已验证\nSSH 推送 main，保留发布历史"
     },
     {
       "id": "S7",
@@ -61,7 +61,7 @@
       "y": 0,
       "width": 290,
       "height": 150,
-      "text": "S7 待验证\nGitHub Pages 分发"
+      "text": "S7 已验证\nGitHub Pages 分发"
     },
     {
       "id": "S8",

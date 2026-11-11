@@ -13,8 +13,12 @@
 ## 迁移
 更换 `_config.yml` 中的 `url` 后重建，把 `public/` 上传至其他静态托管平台；或在服务器用 Caddy/Nginx 提供静态服务。Markdown 和主题不依赖 GitHub 数据库。
 
-## 待验证
-- main 分支当前 Pages 发布设置和新版本上线结果。
-- 源码验证作业的实际执行结果。
+## 2026-11-11 已验证发布
+- Pages 配置：main 分支根目录，legacy 构建模式。
+- 源码版本：28ed6fc5e7fedd880c5c3f1150e61ec088cefdd5；[源码构建与检查成功](https://github.com/MoclifFood/MoclifFood.github.io/actions/runs/43040918594)。
+- 静态发布版本：65b13cfd0814d31b5301be07063e649ee75721eb；[Pages 部署成功](https://github.com/MoclifFood/MoclifFood.github.io/actions/runs/43040960271)。
+- 线上主页、归档、项目、日常、关于、搜索、署名及三篇文章均返回 200；首页为笑脸，旧介绍已移除。
+- 线上 CSS、JS、两份字体和搜索索引的 SHA-256 与本地产物一致，自定义 404 返回 404。
+- source 工作流仅验证和打包，发布仍须运行本地 SSH 发布脚本。后续仅文档提交无需重发 main。
 
 对应：[P4 上线](项目-开发计划图.md)、[S6/S7 发布与分发](项目-系统运行流程图.md)。

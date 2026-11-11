@@ -47,3 +47,7 @@ GitHub 仓库 Settings → Pages 应保持从 `main` 分支根目录发布。生
 页面字体与图片本地托管，运行时不依赖外部字体 CDN。图片和字体来源见站点 `/credits/` 与 `assets/credits.json`。
 
 项目记录从 [preset.md](preset.md) 开始；Obsidian 可打开项目内 `Obsidian/` 文件夹。
+
+- [开发计划图](Library/项目-开发计划图.md) · [运行流程图](Library/项目-系统运行流程图.md)
+- [计划 Canvas](Obsidian/思维导图/项目-开发计划图.canvas) · [运行 Canvas](Obsidian/思维导图/项目-系统运行流程图.canvas)
+- [设计与素材记录](Library/设计-个人工作台.md) · [验收记录](Library/验证-首版验收.md)
