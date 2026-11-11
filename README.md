@@ -5,6 +5,7 @@
 - 网站：https://mocliffood.github.io
 - 源码：`source` 分支；静态产物：`main` 分支。
 - 框架：Hexo 8；主题：`themes/mocliffood/`，独立 EJS/CSS/JavaScript。
+- npm 构建与预览入口固定使用 Asia/Shanghai，确保 UTC 构建机器上的文章日期与链接不偏移。
 
 ## 本地使用
 

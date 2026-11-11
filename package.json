@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo clean && hexo generate",
+    "build": "node tools/hexo.mjs clean && node tools/hexo.mjs generate",
     "check": "node tools/check-site.mjs",
     "publish": "npm run build && npm run check && node tools/publish.mjs",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "clean": "node tools/hexo.mjs clean",
+    "deploy": "npm run publish",
+    "server": "node tools/hexo.mjs server"
   },
   "hexo": {
     "version": "8.1.1"
