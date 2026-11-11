@@ -6,11 +6,11 @@
   toggle?.addEventListener('click',()=>{const light=root.dataset.theme!=='light';applyTheme(light);try{localStorage.setItem('workbench-theme-v2',light?'light':'dark');}catch{}});
 
   const filterButtons=[...document.querySelectorAll('[data-filter]')];
-  const rows=[...document.querySelectorAll('[data-kind]')];
-  const filter=kind=>{let visible=0;for(const row of rows){row.hidden=kind!=='全部'&&row.dataset.kind!==kind;if(!row.hidden)visible++;}for(const button of filterButtons)button.setAttribute('aria-pressed',String(button.dataset.filter===kind));const empty=document.querySelector('#filter-empty');if(empty)empty.hidden=visible!==0;};
-  filterButtons.forEach(button=>button.addEventListener('click',()=>{filter(button.dataset.filter);const url=new URL(location.href);if(button.dataset.filter==='全部')url.searchParams.delete('kind');else url.searchParams.set('kind',button.dataset.filter);history.replaceState(null,'',url);}));
-  const initialKind=new URLSearchParams(location.search).get('kind');
-  if(initialKind&&filterButtons.some(b=>b.dataset.filter===initialKind))filter(initialKind);
+  const rows=[...document.querySelectorAll('[data-categories]')];
+  const filter=category=>{let visible=0;for(const row of rows){row.hidden=category!=='全部'&&!JSON.parse(row.dataset.categories).includes(category);if(!row.hidden)visible++;}for(const button of filterButtons)button.setAttribute('aria-pressed',String(button.dataset.filter===category));const empty=document.querySelector('#filter-empty');if(empty)empty.hidden=visible!==0;};
+  filterButtons.forEach(button=>button.addEventListener('click',()=>{filter(button.dataset.filter);const url=new URL(location.href);if(button.dataset.filter==='全部')url.searchParams.delete('category');else url.searchParams.set('category',button.dataset.filter);history.replaceState(null,'',url);}));
+  const initialCategory=new URLSearchParams(location.search).get('category');
+  if(initialCategory&&filterButtons.some(b=>b.dataset.filter===initialCategory))filter(initialCategory);
 
   const form=document.querySelector('#search-form');
   if(form){const input=document.querySelector('#search-input');const results=document.querySelector('#search-results');const status=document.querySelector('#search-status');let indexPromise;let sequence=0;
@@ -18,8 +18,36 @@
     form.addEventListener('submit',event=>{event.preventDefault();const url=new URL(location.href);if(input.value.trim())url.searchParams.set('q',input.value.trim());else url.searchParams.delete('q');history.replaceState(null,'',url);search();});
     input.addEventListener('input',search);input.value=new URLSearchParams(location.search).get('q')||'';if(input.value)search();
   }
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
-    const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;const element=entry.target;const photo=element.matches('figure');const heading=element.matches('h1,h2,h3');const frames=photo?[{transform:'scale(1.045)',opacity:.65},{transform:'scale(1)',opacity:1}]:heading?[{transform:'translateY(22px)',opacity:.5},{transform:'translateY(0)',opacity:1}]:[{transform:'translateX(12px)',opacity:.6},{transform:'translateX(0)',opacity:1}];element.animate(frames,{duration:photo?1100:750,easing:'cubic-bezier(.16,1,.3,1)'});observer.unobserve(element);}}, {threshold:.12});
-    document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));
+  const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  if(!motion.matches&&'IntersectionObserver' in window){
+    // Only conceal content below the fold; the first screen and no-script page stay readable.
+    const elements=[...document.querySelectorAll('.reveal, .filter-panel, .site-footer > *, .page-heading > *, .article-heading > *, .article-toc, .prose > *, .empty-daily > *, .daily-page > img, #search-form')];
+    const animations=new Set();
+    const observer=new IntersectionObserver(entries=>{for(const entry of entries){
+      if(!entry.isIntersecting)continue;
+      const element=entry.target;
+      element.classList.remove('reveal-pending');
+      if(element.animate){
+        const animation=element.animate([{opacity:0},{opacity:1}],{duration:element.matches('figure,img')?900:650,easing:'ease-out'});
+        animations.add(animation);
+        animation.onfinish=()=>animations.delete(animation);
+      }
+      observer.unobserve(element);
+    }}, {rootMargin:'0px 0px -40px 0px',threshold:0});
+    for(const element of elements){
+      if(element.getBoundingClientRect().top<innerHeight)continue;
+      element.classList.add('reveal-pending');
+      observer.observe(element);
+    }
+    document.addEventListener('focusin',event=>{
+      const element=event.target.closest('.reveal-pending');
+      if(element){element.classList.remove('reveal-pending');observer.unobserve(element);}
+    });
+    motion.addEventListener('change',()=>{if(motion.matches){
+      observer.disconnect();
+      elements.forEach(element=>element.classList.remove('reveal-pending'));
+      animations.forEach(animation=>animation.cancel());
+      animations.clear();
+    }});
   }
 })();
