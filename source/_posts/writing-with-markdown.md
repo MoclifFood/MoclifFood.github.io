@@ -1,6 +1,6 @@
 ---
 title: 用 Markdown 写下一篇记录
-date: 2026-11-11T00:01:00+08:00
+date: 2026-11-11 00:01:00
 kind: 学习笔记
 description: 一篇文章需要哪些信息，图片放在哪里，以及写完后怎样预览和发布。
 tags: [Markdown, 写作]
@@ -21,7 +21,7 @@ npx hexo new "文章标题"
 ```yaml
 ---
 title: 一次新的记录
-date: 2026-11-11T12:00:00+08:00
+date: 2026-11-11 12:00:00
 kind: 日常分享
 description: 用一句话介绍这篇文章。
 tags: [日常]
