@@ -18,36 +18,21 @@
     form.addEventListener('submit',event=>{event.preventDefault();const url=new URL(location.href);if(input.value.trim())url.searchParams.set('q',input.value.trim());else url.searchParams.delete('q');history.replaceState(null,'',url);search();});
     input.addEventListener('input',search);input.value=new URLSearchParams(location.search).get('q')||'';if(input.value)search();
   }
-  const motion=matchMedia('(prefers-reduced-motion: reduce)');
-  if(!motion.matches&&'IntersectionObserver' in window){
-    // Only conceal content below the fold; the first screen and no-script page stay readable.
+  if('IntersectionObserver' in window){
+    // Keep native content visible without JavaScript; only fade opacity, never move the page.
     const elements=[...document.querySelectorAll('.reveal, .filter-panel, .site-footer > *, .page-heading > *, .article-heading > *, .article-toc, .prose > *, .empty-daily > *, .daily-page > img, #search-form')];
-    const animations=new Set();
     const observer=new IntersectionObserver(entries=>{for(const entry of entries){
-      if(!entry.isIntersecting)continue;
       const element=entry.target;
-      element.classList.remove('reveal-pending');
-      if(element.animate){
-        const animation=element.animate([{opacity:0},{opacity:1}],{duration:element.matches('figure,img')?900:650,easing:'ease-out'});
-        animations.add(animation);
-        animation.onfinish=()=>animations.delete(animation);
-      }
-      observer.unobserve(element);
-    }}, {rootMargin:'0px 0px -40px 0px',threshold:0});
+      element.classList.toggle('reveal-pending',!entry.isIntersecting&&!element.contains(document.activeElement));
+    }}, {rootMargin:'-8% 0px -8% 0px',threshold:0});
     for(const element of elements){
-      if(element.getBoundingClientRect().top<innerHeight)continue;
-      element.classList.add('reveal-pending');
+      const rect=element.getBoundingClientRect();
+      if(rect.top>=innerHeight||rect.bottom<=0)element.classList.add('reveal-pending');
+      element.classList.add('scroll-fade');
       observer.observe(element);
     }
     document.addEventListener('focusin',event=>{
-      const element=event.target.closest('.reveal-pending');
-      if(element){element.classList.remove('reveal-pending');observer.unobserve(element);}
+      event.target.closest('.scroll-fade')?.classList.remove('reveal-pending');
     });
-    motion.addEventListener('change',()=>{if(motion.matches){
-      observer.disconnect();
-      elements.forEach(element=>element.classList.remove('reveal-pending'));
-      animations.forEach(animation=>animation.cancel());
-      animations.clear();
-    }});
   }
 })();
